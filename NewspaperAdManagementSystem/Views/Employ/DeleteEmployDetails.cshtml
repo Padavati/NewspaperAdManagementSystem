@@ -4,18 +4,22 @@
 *@
 @{
 }
-
 <div>
     <a class="btn btn-primary" asp-action="index">Show Employ Details</a>
 </div>
 
 <form method="post">
-    
+
     <div>
-        <h1>Edit Employee Details</h1>
+        <h1>Delete Employee Details</h1>
         <hr />
         <table>
-            
+            <tr>
+                <td>Employee ID</td>
+                <td>
+                    <input type="text" value="" asp-for="EmpID" />
+                </td>
+            </tr>
             <tr>
                 <td>Employee Name</td>
                 <td>
@@ -67,7 +71,7 @@
             <tr>
                 <td></td>
                 <td>
-                    <input type="submit" value="Update" class="btn btn-primary" />
+                    <input type="submit" value="Delete" class="btn btn-primary" />
                 </td>
             </tr>
         </table>

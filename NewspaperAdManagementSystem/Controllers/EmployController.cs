@@ -33,11 +33,37 @@ namespace NewspaperAdManagementSystem.Controllers
             return View(employDetailsClass);
         }
        
-        public IActionResult EditEmployDetails(int EmpID)//select*from EmployDetails where EmpID
+        public IActionResult EditEmployDetails(int EmpID)//select*from set EmployDetails where EmpID
         {
+            
             var employdetails = _connection.EmployDetails.Find(EmpID);                  
-            ViewBag.message = "Edit operation done successfully";
+            
             return View(employdetails);
         }
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> EditEmployDetails(EmployDetailsClass employDetailsClass)
+        {
+            _connection.Update(employDetailsClass);
+           await _connection.SaveChangesAsync();
+            ViewBag.message = "Updated Successfully";
+            return View(employDetailsClass);
+        }
+        public IActionResult DeleteEmployDetails(int EmpID)//Deletion
+        {
+            var employeeDetails = _connection.EmployDetails.Find(EmpID);
+            return View(employeeDetails);
+        }
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> DeleteEmployDetails(EmployDetailsClass employDetailsClass)
+        {
+            _connection.EmployDetails.Remove(employDetailsClass);
+            await _connection.SaveChangesAsync();
+            ViewBag.message = "Deleted Successfully";
+            return View(employDetailsClass);
+
+        }
+
     }
 }
