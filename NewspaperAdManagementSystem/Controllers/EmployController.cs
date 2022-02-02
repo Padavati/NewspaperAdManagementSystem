@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using NewspaperAdManagementSystem.Models;
 using System;
 using System.Collections.Generic;
@@ -42,10 +43,11 @@ namespace NewspaperAdManagementSystem.Controllers
         }
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> EditEmployDetails(EmployDetailsClass employDetailsClass)
+        public IActionResult EditEmployDetails(EmployDetailsClass employDetailsClass)
         {
-            _connection.Update(employDetailsClass);
-           await _connection.SaveChangesAsync();
+            _connection.Entry(employDetailsClass).State = EntityState.Modified;
+            //_connection.Update(employDetailsClass);
+            _connection.SaveChanges();
             ViewBag.message = "Updated Successfully";
             return View(employDetailsClass);
         }
@@ -58,12 +60,11 @@ namespace NewspaperAdManagementSystem.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteEmployDetails(EmployDetailsClass employDetailsClass)
         {
+            //_connection.Entry(employDetailsClass).State = EntityState.Deleted;
             _connection.EmployDetails.Remove(employDetailsClass);
             await _connection.SaveChangesAsync();
             ViewBag.message = "Deleted Successfully";
             return View(employDetailsClass);
-
         }
-
     }
 }

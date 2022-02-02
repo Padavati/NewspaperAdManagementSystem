@@ -4,6 +4,7 @@
 *@
 @{
 }
+@{ ViewData["Title"] = "All Employee Details";}
 <div>
     <a class="btn btn-primary" asp-action="EmployDetails">Employee Registration</a>
 </div>    
@@ -36,8 +37,8 @@
                     <td>@item.City</td>
                     <td>@item.Pwd</td>
                     <td>@item.Role</td>
-                    <td><a asp-action="EditEmployDetails" asp-route-EmpID="@item.EmpID">Edit</a></td>
-                    <td><a asp-action="DeleteEmployDetails" asp-route-EmpID="@item.EmpID">Delete</a></td>
+                    <td><a asp-action="EditEmployDetails" asp-route-EmpID="@item.EmpID" class="btn btn-primary">Edit</a></td>
+                    <td><a asp-action="DeleteEmployDetails" asp-route-EmpID="@item.EmpID" class="btn btn-danger">Delete</a></td>
                 </tr>
             }
             </tbody>
