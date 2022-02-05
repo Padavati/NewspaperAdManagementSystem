@@ -9,7 +9,7 @@ namespace NewspaperAdManagementSystem.Models
     public class EmployDetailsClass
     {
         [Key]
-        public int EmpID { get; set; }
+        public int EmpID { get; set; }  
         public string EmpName { get; set; }
         public string EmpContactNo { get; set; }
         public string EmailID { get; set; }
